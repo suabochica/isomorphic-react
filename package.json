@@ -1,0 +1,32 @@
+{
+  "name": "isomorphic-react",
+  "version": "1.0.0",
+  "description": "Takeaways and parcitcal project of the course [Isomorphic React](https://app.pluralsight.com/library/courses/isomorphic-react/table-of-contents) by Daniel Stern.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suabochica/isomorphic-react.git"
+  },
+  "keywords": [],
+  "author": "suabochica",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/node": "^7.2.2",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/plugin-transform-regenerator": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.0",
+    "babel-preset-react-hmre": "^1.1.1",
+    "babel-regenerator-runtime": "^6.5.0"
+  } 
+  "bugs": {
+    "url": "https://github.com/suabochica/isomorphic-react/issues"
+  },
+  "homepage": "https://github.com/suabochica/isomorphic-react#readme"
+}
