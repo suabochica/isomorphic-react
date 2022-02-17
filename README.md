@@ -29,3 +29,9 @@ Great question!
 2. Install dependencies `npm install && npm run postinstall`
 3. Run the dev server `npm run start-dev`
 4. Navigate to the application's url http://localhost:3000/
+
+Commands:
+
+```
+cross-env NODE-ENV=development babel-node server
+```
