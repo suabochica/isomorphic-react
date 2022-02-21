@@ -33,8 +33,8 @@
     "request-promise": "^4.2.2",
     "webpack": "^5.21.2",
     "webpack-dev-middleware": "^1.12.0",
-    "webpack-hot-middleware": "^2.19.1" 
-  } 
+    "webpack-hot-middleware": "^2.19.1"
+  },
   "bugs": {
     "url": "https://github.com/suabochica/isomorphic-react/issues"
   },

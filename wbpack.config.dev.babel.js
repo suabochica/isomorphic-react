@@ -1,7 +1,7 @@
 import webpack from 'webpack';
 import path from 'path';
 
-export defatult {
+export default {
 	entry: [
 		'webpack-hot-middleware/client?reload=true',
 		'babel-regenerator-runtime',
@@ -16,7 +16,7 @@ export defatult {
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NamedModulesPlugin(),
 		new webpack.DefinePlugin({
-			process.env: {
+			'process.env': {
 				NODE_ENV: 'development',
 				WEBPACK: true
 			}
@@ -32,7 +32,7 @@ export defatult {
 				use: {
 					loader: 'babel-loader'
 				},
-				include: path.resove(__ dirname, 'src')
+				include: path.resove(__dirname, 'src')
 			}
 		]
 	}
