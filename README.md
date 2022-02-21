@@ -14,6 +14,12 @@ This application is a basic API client which gathers data from an outside API (i
 - Express
 - Webpack
 
+Babel is translating the ES2015 into compatible ES5.
+
+Webpack is using Babel to transform the all the client files `.js` and `.jsx` into ES5.
+
+Express is handling API functions and serving the bundle created by Babel.
+
 ## 🤔 Why Isomorphic React?
 
 Great question!
@@ -35,3 +41,8 @@ Commands:
 ```
 cross-env NODE-ENV=development babel-node server
 ```
+
+```
+cross-env NODE-ENV=development babel-node server --useLiveData=true
+```
+
