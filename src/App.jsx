@@ -2,8 +2,14 @@
 import React from 'react';
 import { connect } from 'redux-saga';
 
-const App = () => (
-    <div><h1>Isomorphic React</h1></div>
+const App = ({test}) => (
+    <div><h1>Isomorphic React {test}</h1></div>
 );
 
-export default App;
+const mapStateToProps = (state, ownProps) => {
+    return {
+        ...state
+    }
+};
+
+export default connect(mapStateToProps)(App);
