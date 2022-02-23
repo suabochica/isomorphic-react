@@ -1,10 +1,22 @@
 import { createStore, combineReducers, applyMiddelware } from 'redux';
-import { identity } from 'lodash';
+import createSagaMiddleware from 'redux-saga';
+import { createLogger } from 'redux-logger';
 
-export default function ( defaultState = {
-    test: "Test values"
-}) {
-    const store = createStore(identity, defaultState);
+import fetchQuestionsSaga from './sagas/fetch-questions.saga';
+import * as reducers from './reducers'
+
+export default function (defaultState) {
+    const sagaMiddleware = createSagaMiddleware();
+    const middlewareChain = [sagaMiddleware];
+
+    if (process.env.NODE_ENV === 'development') {
+        const logger = createLogger();
+
+        middlewareChain.push(logger);
+    }
+
+    const store = createStore(combineReducers({...reducers}), defaultState, applyMiddelware(...middlewareChain));
+    sagaMiddleware.run(fetchQuestionsSaga)
 
     return store;
 }
