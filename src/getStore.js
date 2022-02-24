@@ -15,7 +15,7 @@ export default function (defaultState) {
         middlewareChain.push(logger);
     }
 
-    const store = createStore(combineReducers({...reducers}), defaultState, applyMiddelware(...middlewareChain));
+    const store = createStore(combineReducers({ ...reducers }), defaultState, applyMiddelware(...middlewareChain));
     sagaMiddleware.run(fetchQuestionsSaga)
 
     return store;
