@@ -20,5 +20,14 @@ const render = (_App) => {
     )
 }
 
+// Hot reloading: No necessary refresh the changes to update contents
+if (module.hot) {
+    module.hot.accept('./App', () => {
+        const NextApp = require('./App').default;
+
+        render(NextApp);
+    })
+}
+
 render(App);
 fetchDataForLocation();
