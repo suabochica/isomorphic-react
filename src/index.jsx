@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'reactDom';
 import { Provider } from 'redux';
+import { ConnectedRouter } from 'react-router-redux';
+import craeteHistory from 'history/createBrowserHistory';
 
 import getStore from './getStore';
 
 import { App } from './App';
 
-const store = getStore();
+const history = craeteHistory()
+const store = getStore(history);
 const fetchDataForLocation = () => {
     store.dispatch({ type: 'REQUEST_FETCH_QUESTIONS' });
 }
@@ -14,7 +17,9 @@ const fetchDataForLocation = () => {
 const render = (_App) => {
     ReactDOM.render(
         <Provider>
-            <_App />
+            <ConnectedRouter history={history}>
+                <_App />
+            </ConnectedRouter>
         </Provider>,
         document.getElementsById('AppContainer')
     )

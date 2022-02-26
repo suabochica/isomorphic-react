@@ -1,13 +1,20 @@
 
 import React from 'react';
 import { connect } from 'redux-saga';
-import QuestionsList from './components/QuestionsList';
+import { Route, Link } from 'react-router-dom';
 
-const App = ({test}) => (
+import QuestionsList from './components/QuestionsList';
+import QuestionDetails from './components/QuestionDetails';
+
+const App = () => (
     <div>
-        <h1>Isomorphic React {test}</h1>
+        <Link to={`/`}>
+            <h1>Isomorphic React {test}</h1>
+        </Link>
         <div>
-            <QuestionsList/>
+            {/* <QuestionsList/> */}
+            <Route exact path="/" render={() => <QuestionsList />} />
+            <Route exact path="/questions/:id" render={({ match }) => <QuestionDetails question_id={match.params.id} />} />
         </div>
     </div>
 );

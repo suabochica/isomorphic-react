@@ -3,11 +3,16 @@ import { connect } from 'react-redux';
 
 import TagsList from './TagsList';
 
-const QuestionListItem = ({ title, tags }) => (
+const QuestionListItem = ({ title, tags, quiestion_id }) => (
     <div className='mb-3'>
         <h3>{title}</h3>
         <div className='mb-2'>
-            <TagsList tags={tags}/>
+            <TagsList tags={tags} />
+        </div>
+        <div>
+            <Link to={`/questionsz/${questions_id}`}>
+                <button>More Info!</button>
+            </Link>
         </div>
     </div>
 )
