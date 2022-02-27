@@ -1,11 +1,14 @@
-import express, { response } from 'express';
+import express from 'express';
 import yields from 'express-yields';
 import fs from 'fs-extra';
-import webpack from 'webpack';
-import { argv } from 'optimist';
 import React from 'react';
+import createHistory from 'history/createMemoryHistory';
+import webpack from 'webpack';
+
+import { argv } from 'optimist';
 import { Provider } from 'react-redux';
 import { renderToString } from 'react-dom/server';
+import { ConnectedRouter } from 'react-router-redux;'
 import { delay } from 'redux-saga';
 import { get } from 'request-promise';
 
@@ -61,6 +64,36 @@ app.get('/api/question/:id', function* (request, response) {
 	response.json(data);
 });
 
+app.get(['/', 'questions/:id'], function* (request, response) {
+	let index = yield fs.readFile('./public/index.html', 'utf-8');
+	const initialState = {
+		questions: []
+	};
+	const history = createHistory({
+		initialEntries: [request.pathr]
+	})
+	const questions = yield getQuestions();
+
+	initialState.questions = questions.items;
+
+	const store = getStore(history, initialState);
+
+	if (useServerRender) {
+		const appRendered = renderToString(
+			<Provider>
+				<ConnectedRouter history={history}>
+					<App />
+				</ConnectedRouter>
+			</Provider>
+		)
+		index = index.replace(`<%= preloadedApplicaiton`, appRendered);
+	} else {
+		index = index.replace(`<%= preloadedApplicaiton`, `Please wait while we load the appplication.`);
+	}
+
+	response.send(index);
+});
+
 if (process.env === 'development') {
 	const config = require('../webpack.config.dev.babel').default;
 	const compiler = webpack(config);
@@ -71,30 +104,5 @@ if (process.env === 'development') {
 
 	app.use(require('webpack-hot-middleware')(compiler));
 }
-
-app.get(['/'], function* (request, response) {
-	let index = yield fs.readFile('./public/index.html', 'utf-8');
-	const initialState = {
-		questions: []
-	};
-	const questions = yield getQuestions();
-
-	initialState.questions = questions.items;
-
-	const store = getStore(initialState);
-
-	if (useServerRender) {
-		const appRendered = renderToString(
-			<Provider>
-				<App />
-			</Provider>
-		)
-		index = index.replace(`<%= preloadedApplicaiton`, appRendered);
-	} else {
-		index = index.replace(`<%= preloadedApplicaiton`, `Please wait while we load the appplication.`);
-	}
-
-	response.send(index);
-});
 
 app.listen(port, '0.0.0.0', () => console.info(`App listening on ${port}`));
