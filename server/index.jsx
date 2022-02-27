@@ -70,11 +70,21 @@ app.get(['/', 'questions/:id'], function* (request, response) {
 		questions: []
 	};
 	const history = createHistory({
-		initialEntries: [request.pathr]
+		initialEntries: [request.path]
 	})
-	const questions = yield getQuestions();
 
-	initialState.questions = questions.items;
+	if (request.params.id) {
+
+		const question_id = request.params.id;
+		const response = yield getQuestion(question_id);
+		const questionsDetails = response.items[0];
+
+		initialState.questions = [{ ...questionsDetails, question_id }]
+	} else {
+		const questions = yield getQuestions();
+
+		initialState.questions = questions.items;
+	}
 
 	const store = getStore(history, initialState);
 
