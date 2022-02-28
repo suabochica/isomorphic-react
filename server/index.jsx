@@ -3,6 +3,7 @@ import yields from 'express-yields';
 import fs from 'fs-extra';
 import React from 'react';
 import createHistory from 'history/createMemoryHistory';
+import path from 'path';
 import webpack from 'webpack';
 
 import { argv } from 'optimist';
@@ -113,6 +114,8 @@ if (process.env === 'development') {
 	}));
 
 	app.use(require('webpack-hot-middleware')(compiler));
+} else {
+	app.use(express.static(path.resolve(__dirname, '../dist')));
 }
 
 app.listen(port, '0.0.0.0', () => console.info(`App listening on ${port}`));
