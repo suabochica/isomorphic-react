@@ -29,20 +29,21 @@ Great question!
     Uses React Router (in a combination with server rendering that is truly amazing)
     No fluff, just the good stuff
 
-# 👣 Getting Started
+## 👣 Getting Started
 
 1. Clone the repository
 2. Install dependencies `npm install && npm run postinstall`
 3. Run the dev server `npm run start-dev`
 4. Navigate to the application's url http://localhost:3000/
 
-Commands:
-
-```
-cross-env NODE-ENV=development babel-node server
-```
-
-```
-cross-env NODE-ENV=development babel-node server --useLiveData=true
-```
-
+## 🥡 Takeaways
+- React is integrating with Redux to create our client view
+- React Router is rendering different component based on path
+- Express is assembling state but leaving rendering details to router
+- Browser History and Memory History are powering React Router on the client and on the server, respectively
+- Hot Module Reload is being used to hot reload the client development view on source update
+- Production setting are implemented
+## 📓 Functional components of the application
+- Routing
+- Server Rendering
+- Isomorphic data fetching

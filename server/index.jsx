@@ -91,7 +91,7 @@ app.get(['/', 'questions/:id'], function* (request, response) {
 
 	if (useServerRender) {
 		const appRendered = renderToString(
-			<Provider>
+			<Provider store={store}>
 				<ConnectedRouter history={history}>
 					<App />
 				</ConnectedRouter>
