@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { connect } from 'redux-saga';
+import { connect } from 'react-redux';
 import { Route, Link } from 'react-router-dom';
 
 import QuestionsList from './components/QuestionsList';
@@ -9,7 +9,7 @@ import QuestionDetails from './components/QuestionDetails';
 const App = () => (
     <div>
         <Link to={`/`}>
-            <h1>Isomorphic React {test}</h1>
+            <h1>Isomorphic React</h1>
         </Link>
         <div>
             {/* <QuestionsList/> */}

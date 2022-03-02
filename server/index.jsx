@@ -3,13 +3,14 @@ import yields from 'express-yields';
 import fs from 'fs-extra';
 import React from 'react';
 import createHistory from 'history/createMemoryHistory';
+// require("history").createMemoryHistory;
 import path from 'path';
 import webpack from 'webpack';
 
 import { argv } from 'optimist';
 import { Provider } from 'react-redux';
 import { renderToString } from 'react-dom/server';
-import { ConnectedRouter } from 'react-router-redux;'
+import { ConnectedRouter } from 'react-router-redux';
 import { delay } from 'redux-saga';
 import { get } from 'request-promise';
 
@@ -22,6 +23,19 @@ const app = express();
 
 const useLiveData = argv.useLiveData === "true";
 const useServerRender = argv.useServerRender === "true";
+
+if (process.env === 'development') {
+	const config = require('../webpack.config.dev.babel').default;
+	const compiler = webpack(config);
+
+	app.use(require('webpack-dev-middleware')(compiler, {
+		noInfo: true
+	}));
+
+	app.use(require('webpack-hot-middleware')(compiler));
+} else {
+	app.use(express.static(path.resolve(__dirname, '../dist')));
+}
 
 function* getQuestions() {
 	let data;
@@ -97,25 +111,12 @@ app.get(['/', 'questions/:id'], function* (request, response) {
 				</ConnectedRouter>
 			</Provider>
 		)
-		index = index.replace(`<%= preloadedApplicaiton`, appRendered);
+		index = index.replace(`<%= preloadedApplication %>`, appRendered);
 	} else {
-		index = index.replace(`<%= preloadedApplicaiton`, `Please wait while we load the appplication.`);
+		index = index.replace(`<%= preloadedApplication %>`, `Please wait while we load the appplication.`);
 	}
 
 	response.send(index);
 });
-
-if (process.env === 'development') {
-	const config = require('../webpack.config.dev.babel').default;
-	const compiler = webpack(config);
-
-	app.use(require('webpack-dev-middleware')(compiler, {
-		noInfo: true
-	}));
-
-	app.use(require('webpack-hot-middleware')(compiler));
-} else {
-	app.use(express.static(path.resolve(__dirname, '../dist')));
-}
 
 app.listen(port, '0.0.0.0', () => console.info(`App listening on ${port}`));

@@ -1,16 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
 
 import TagsList from './TagsList';
 
-const QuestionListItem = ({ title, tags, quiestion_id }) => (
+const QuestionListItem = ({ title, tags, question_id }) => (
     <div className='mb-3'>
         <h3>{title}</h3>
         <div className='mb-2'>
             <TagsList tags={tags} />
         </div>
         <div>
-            <Link to={`/questionsz/${questions_id}`}>
+            <Link to={`/questions/${question_id}`}>
                 <button>More Info!</button>
             </Link>
         </div>
@@ -24,7 +25,7 @@ const QuestionList = ({ questions }) => (
                 {questions.map(
                     questions =>
                         <QuestionListItem
-                            key={questions.quiestion_id}
+                            key={questions.question_id}
                             {...questions}
                         />
                 )}
