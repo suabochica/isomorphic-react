@@ -7,7 +7,7 @@ import fetchQuestionsSaga from './sagas/fetch-questions-saga';
 import fetchQuestionSaga from './sagas/fetch-question-saga';
 import * as reducers from './reducers'
 
-export default function (history, defaultState) {
+export default function (history, defaultState = {}) {
     const sagaMiddleware = createSagaMiddleware();
     const middleware = routerMiddleware(history);
     const middlewareChain = [middleware, sagaMiddleware];
@@ -18,11 +18,11 @@ export default function (history, defaultState) {
         middlewareChain.push(logger);
     }
 
-    const store = createStore(
-        combineReducers({ ...reducers, router }),
-        defaultState,
-        applyMiddleware(...middlewareChain)
-    );
+    const store = createStore(combineReducers({
+        ...reducers,
+        router
+    }), defaultState, applyMiddleware(...middlewareChain));
+
     sagaMiddleware.run(fetchQuestionsSaga);
     sagaMiddleware.run(fetchQuestionSaga);
 

@@ -25,11 +25,20 @@ const useLiveData = argv.useLiveData === "true";
 const useServerRender = argv.useServerRender === "true";
 
 if (process.env === 'development') {
-	const config = require('../webpack.config.dev.babel').default;
+	const config = require('../webpack.config.dev.babel');
 	const compiler = webpack(config);
 
 	app.use(require('webpack-dev-middleware')(compiler, {
-		noInfo: true
+		noInfo: true,
+		stats: {
+            assets: false,
+            colors: true,
+            version: false,
+            hash: false,
+            timings: false,
+            chunks: false,
+            chunkModules: false
+        }
 	}));
 
 	app.use(require('webpack-hot-middleware')(compiler));

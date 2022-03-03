@@ -1,20 +1,23 @@
-import path from 'path';
-import webpack from 'webpack';
+const path = require('path');
+const webpack = require('webpack');
+const TerserPlugin = require("terser-webpack-plugin");
 
 export default {
+	mode: 'development',
 	entry: [
 		'webpack-hot-middleware/client?reload=true',
 		'babel-regenerator-runtime',
-		path.resolve(__dirname, 'src/')
+		path.resolve(__dirname, 'src')
 	],
 	output: {
-		path: path.resolve(__dirname, 'public'),
+		path: path.resolve(__dirname, 'dist'),
 		publicPath: '/',
 		filename: 'bundle.js'
 	},
+	optimization: {
+		minimizer: [new TerserPlugin()]
+	},
 	plugins: [
-		new webpack.HotModuleReplacementPlugin(),
-		new webpack.NamedModulesPlugin(),
 		new webpack.DefinePlugin({
 			'process.env': {
 				NODE_ENV: JSON.stringify('development'),
@@ -28,7 +31,7 @@ export default {
 	module: {
 		loader: [
 			{
-				test: /\.jsx/,
+				test: /\.jsx?$/,
 				use: {
 					loader: 'babel-loader'
 				},
