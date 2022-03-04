@@ -21,7 +21,7 @@ if (module.hot) {
 
 const render = (_App) => {
     ReactDOM.render(
-        <Provider>
+        <Provider store={store}>
             <ConnectedRouter history={history}>
                 <_App />
             </ConnectedRouter>
