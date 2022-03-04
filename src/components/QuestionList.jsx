@@ -16,11 +16,11 @@ const QuestionListItem = ({ title, tags, question_id }) => (
             </Link>
         </div>
     </div>
-)
+);
 
 const QuestionList = ({ questions }) => (
     <div>
-        {questions && questions.length ?
+        {questions ?
             <div>
                 {questions.map(
                     questions =>
@@ -31,7 +31,7 @@ const QuestionList = ({ questions }) => (
                 )}
             </div> :
             <div>
-                ... Loading questions
+                Loading questions ...
             </div>
         }
     </div>

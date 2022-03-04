@@ -99,13 +99,13 @@ app.get(['/', 'questions/:id'], function* (request, response) {
 	if (request.params.id) {
 		const question_id = request.params.id;
 		const response = yield getQuestion(question_id);
-		const questionsDetails = response.items[0];
+		const questionDetails = response.items[0];
 
-		initialState.questions = [{ ...questionsDetails, question_id }]
+		initialState.questions = [{ ...questionDetails, question_id }]
 	} else {
 		const questions = yield getQuestions();
 
-		initialState.questions = questions.items;
+		initialState.questions = [...questions.items];
 	}
 
 	const store = getStore(history, initialState);

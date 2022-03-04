@@ -3,19 +3,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Link } from 'react-router-dom';
 
-import QuestionsList from './components/QuestionsList';
+import QuestionList from './components/QuestionList';
 import QuestionDetails from './components/QuestionDetails';
 
-const App = () => (
+const AppDisplay = () => (
     <div>
-        <Link to={`/`}>
-            <h1>Isomorphic React</h1>
-        </Link>
         <div>
-            {/* <QuestionsList/> */}
-            <Route exact path="/" render={() => <QuestionsList />} />
-            <Route exact path="/questions/:id" render={({ match }) => <QuestionDetails question_id={match.params.id} />} />
+            <Link to={`/`}>
+                <h1>Isomorphic React</h1>
+            </Link>
         </div>
+        <Route exact path="/" render={() => <QuestionList />} />
+        <Route exact path="/questions/:id" render={({ match }) => <QuestionDetails question_id={match.params.id} />} />
     </div>
 );
 
@@ -25,4 +24,4 @@ const mapStateToProps = (state, ownProps) => {
     }
 };
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(AppDisplay);

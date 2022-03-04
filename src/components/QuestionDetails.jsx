@@ -17,7 +17,7 @@ const QuestionDetailDisplay = ({ title, body, answer_count, tags }) => {
                     {answer_count} Answers
                 </div>
             </div> : <div>
-                <h4>Loading Questions</h4>
+                <h4>Loading Question ...</h4>
             </div>
         }
     </div>
