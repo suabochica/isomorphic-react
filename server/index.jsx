@@ -3,7 +3,6 @@ import yields from 'express-yields';
 import fs from 'fs-extra';
 import React from 'react';
 import createHistory from 'history/createMemoryHistory';
-// require("history").createMemoryHistory;
 import path from 'path';
 import webpack from 'webpack';
 
@@ -58,16 +57,16 @@ function* getQuestions() {
 	return JSON.parse(data);
 }
 
-function* getQuestion(questionId) {
+function* getQuestion(question_id) {
 	let data;
 
 	if (useLiveData) {
-		data = yield get(question(questionId), { gzip: true, json: true });
+		data = yield get(question(question_id), { gzip: true, json: true });
 	} else {
 		const questions = yield getQuestions();
-		const question = questions.items.find(question => question.question_id == questionId);
+		const question = questions.items.find(question => question.question_id == question_id);
 
-		question.body = `Mock question body ${questionId}`;
+		question.body = `Mock question body ${question_id}`;
 		data = { items: [question] };
 	}
 
@@ -98,7 +97,6 @@ app.get(['/', 'questions/:id'], function* (request, response) {
 	})
 
 	if (request.params.id) {
-
 		const question_id = request.params.id;
 		const response = yield getQuestion(question_id);
 		const questionsDetails = response.items[0];

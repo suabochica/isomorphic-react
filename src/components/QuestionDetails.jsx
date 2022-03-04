@@ -1,7 +1,6 @@
 import React from 'react';
 import Markdown from 'react-markdown';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 import TagsList from './TagsList';
 
@@ -25,7 +24,7 @@ const QuestionDetailDisplay = ({ title, body, answer_count, tags }) => {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-    ...state.questions.find(({ questions_id }) => question_id == ownProps.question_id)
+    ...state.questions.find(({ question_id }) => question_id == ownProps.question_id)
 });
 
 export default connect(mapStateToProps)(QuestionDetailDisplay);
