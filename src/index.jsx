@@ -30,8 +30,6 @@ const render = (_App) => {
     )
 }
 
-
-// render(App);
 store.subscribe(() => {
     const state = store.getState();
 
@@ -52,7 +50,7 @@ const fetchDataForLocation = location => {
     if (location.pathname.includes('questions')) {
         store.dispatch({
             type: 'REQUEST_FETCH_QUESTION',
-            questions_id: location.pathname.split('/')[2]
+            question_id: location.pathname.split('/')[2]
         });
     }
 }

@@ -80,7 +80,7 @@ app.get('/api/questions', function* (request, response) {
 	response.json(data);
 });
 
-app.get('/api/question/:id', function* (request, response) {
+app.get('/api/questions/:id', function* (request, response) {
 	const data = yield getQuestion(request.params.id);
 	yield delay(150);
 

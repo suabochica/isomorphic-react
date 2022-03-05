@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Route, Link } from 'react-router-dom';
 
 import QuestionList from './components/QuestionList';
-import QuestionDetails from './components/QuestionDetails';
+import QuestionDetail from './components/QuestionDetail';
 
 const AppDisplay = () => (
     <div>
@@ -13,8 +13,10 @@ const AppDisplay = () => (
                 <h1>Isomorphic React</h1>
             </Link>
         </div>
-        <Route exact path="/" render={() => <QuestionList />} />
-        <Route exact path="/questions/:id" render={({ match }) => <QuestionDetails question_id={match.params.id} />} />
+        <div>
+            <Route exact path="/" render={() => <QuestionList />} />
+            <Route exact path="/questions/:id" render={({ match }) => <QuestionDetail question_id={match.params.id} />} />
+        </div>
     </div>
 );
 

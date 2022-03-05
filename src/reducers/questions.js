@@ -1,8 +1,8 @@
 import unionWith from "lodash/unionWith";
 
-export const questions = (state = [], { type, questions, question }) => {
+export const questions = (state = [], { type, question, questions }) => {
     const questionEquality = (a = {}, b = {}) => {
-        return a.question_id === b.question_id;
+        return a.question_id == b.question_id;
     };
 
     if (type === 'FETCHED_QUESTIONS') {

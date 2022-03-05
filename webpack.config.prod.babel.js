@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const TerserPlugin = require("terser-webpack-plugin");
 
 export default {
+	mode: 'production',
 	entry: [
 		'babel-regenerator-runtime',
 		path.resolve(__dirname, 'src')
@@ -28,7 +29,7 @@ export default {
 		extensions: ['.js', '.json', '.jsx']
 	},
 	module: {
-		loader: [
+		rules: [
 			{
 				test: /\.jsx?$/,
 				use: {
