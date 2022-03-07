@@ -47,3 +47,8 @@ Great question!
 - Routing
 - Server Rendering
 - Isomorphic data fetching
+
+## 💬 Troubleshooting
+
+- Remember that in `.jsx` compontents use the arrow function followed by parenthesis `()` instead of braces `{}`.
+- In PROGRESS: Cannot get `questions/12313` when we try to visualize the question details

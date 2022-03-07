@@ -25,6 +25,9 @@ export default {
 			}
 		}),
 	],
+	devServer: {
+		historyApiFallback: true,
+	},
 	resolve: {
 		extensions: ['.js', '.json', '.jsx']
 	},
