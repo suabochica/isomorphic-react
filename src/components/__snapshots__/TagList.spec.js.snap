@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Tag List snapshot should render as expected 1`] = `
+<div>
+  <code>
+     
+    css
+     
+  </code>
+  <code>
+     
+    html
+     
+  </code>
+  <code>
+     
+    go
+     
+  </code>
+</div>
+`;
