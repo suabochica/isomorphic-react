@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import TagsList from './TagsList';
 
-const QuestionDetailDisplay = ({ title, body, answer_count, tags }) => (
+export const QuestionDetailDisplay = ({ title, body, answer_count, tags }) => (
     <div>
         <h3 className="mb-2">{title}</h3>
         {body ?
@@ -24,7 +24,7 @@ const QuestionDetailDisplay = ({ title, body, answer_count, tags }) => (
     </div>
 );
 
-const mapStateToProps = (state, ownProps) => ({
+export const mapStateToProps = (state, ownProps) => ({
     ...state.questions.find(({ question_id }) => question_id == ownProps.question_id)
 });
 
